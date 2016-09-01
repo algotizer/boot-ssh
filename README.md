@@ -11,7 +11,7 @@ Run the `scp-to` task:
 To use this in your project, add `[boot-ssh "0.1.0-SNAPSHOT"]` to your `:dependencies`
 and then require the task:
 
-    (require '[boot-ssh.core :refer [scp-to]])
+    (require '[boot-ssh :refer [scp-to]])
 
 and then setup
 
