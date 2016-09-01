@@ -1,6 +1,6 @@
-# boot-sftp
+# boot-ssh
 
-Boot tasks use clj-ssh to provide some common ssh task like `scp` `sftp` `ssh`.
+Boot tasks use clj-ssh to provide some common ssh tasks like `scp` `sftp` `ssh`.
 
 ## Usage
 
