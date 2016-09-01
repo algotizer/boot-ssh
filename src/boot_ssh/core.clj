@@ -30,9 +30,13 @@
         (next-task fileset)
         (let [agent   (ssh/ssh-agent (:agent-opts options))]
           (when (:private-key-path options)
-            (util/info (str "using private key: " (:private-key-path options) ".\n"))
+            (util/info (str "Using private key: " (:private-key-path options) ".\n"))
             (ssh/add-identity agent {:private-key-path (:private-key-path options)}))
-          (let [session (ssh/session agent (:ip options) (:sess-opts options))]
+          (let [session (ssh/session agent (:ip options) (:sess-opts options))
+                files   (->> (:sources options)
+                             (map #(seq (.listFiles (clojure.java.io/file %))))
+                             (flatten)
+                             (map #(.getAbsolutePath %)))]
             (ssh/with-connection session
-              (apply ssh/scp-to session (:sources options) (:destination options) (flatten (into [] (:options options))))))))
+              (apply ssh/scp-to session files (:destination options) (flatten (into [] (:options options))))))))
       (util/info "Uploaded via scp.\n"))))
