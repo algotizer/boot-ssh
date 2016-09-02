@@ -8,7 +8,7 @@ Run the `scp-to` task:
 
     $ boot scp-to
 
-To use this in your project, add `[boot-ssh "0.1.0-SNAPSHOT"]` to your `:dependencies`
+To use this in your project, add `[boot-ssh "0.1.1-SNAPSHOT"]` to your `:dependencies`
 and then require the task:
 
     (require '[boot-ssh :refer [scp-to]])
