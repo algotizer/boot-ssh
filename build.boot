@@ -5,7 +5,7 @@
 (require '[adzerk.bootlaces :refer :all])
 
 (def project 'algotizer/boot-ssh)
-(def +version+ "0.1.0")
+(def +version+ "0.1.1-SNAPSHOT")
 (bootlaces! +version+)
 
 (task-options!
