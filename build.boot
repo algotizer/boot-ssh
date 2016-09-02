@@ -25,7 +25,7 @@
 (deftask release-release
   "Release release"
   []
-  (comp (buil-jar) (push-release)))
+  (comp (build-jar) (push-release)))
 
 (deftask dev
   "Dev process"
