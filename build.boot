@@ -1,12 +1,11 @@
 (set-env! :source-paths #{"src"}
-          :dependencies   '[[org.clojure/clojure "RELEASE"]
-                            [adzerk/bootlaces "0.1.13" :scope "test"]
+          :dependencies   '[[adzerk/bootlaces "0.1.13" :scope "test"]
                             [clj-ssh "0.5.14"]])
 
 (require '[adzerk.bootlaces :refer :all])
 
 (def project 'algotizer/boot-ssh)
-(def +version+ "0.1.0-SNAPSHOT")
+(def +version+ "0.1.0")
 (bootlaces! +version+)
 
 (task-options!
@@ -22,6 +21,11 @@
   "Release snapshot"
   []
   (comp (build-jar) (push-snapshot)))
+
+(deftask release-release
+  "Release release"
+  []
+  (comp (buil-jar) (push-release)))
 
 (deftask dev
   "Dev process"
