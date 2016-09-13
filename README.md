@@ -2,6 +2,11 @@
 
 Boot tasks use clj-ssh to provide some common ssh tasks like `scp` `sftp` `ssh`.
 
+[![Dependencies Status](https://jarkeeper.com/algotizer/boot-ssh/status.svg)](https://jarkeeper.com/algotizer/boot-ssh)
+[![Downloads](https://jarkeeper.com/algotizer/boot-ssh/downloads.svg)](https://jarkeeper.com/algotizer/boot-ssh)
+
+[![Clojars Project](https://img.shields.io/clojars/v/algotizer/boot-ssh.svg)](https://clojars.org/algotizer/boot-ssh)
+
 ## Usage
 
 Run the `scp-to` task:

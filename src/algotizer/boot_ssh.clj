@@ -14,6 +14,17 @@
    :options {:recursive true}
    :sess-opts {:strict-host-key-checking :no}})
 
+(defn- get-files [paths]
+  (->> paths
+       (map (fn [p])
+         (let [f (clojure.java.io/file p)]
+           (if (.isDirectory f)
+             (seq (.listFiles f))
+             [f])))
+       flatten
+       (map #(.getAbsolutePath %))))
+
+
 (deftask scp-to
   "transfer local directories via scp"
   [i ip               IP              str       "hostname"
@@ -33,10 +44,7 @@
             (util/info (str "Using private key: " (:private-key-path options) ".\n"))
             (ssh/add-identity agent {:private-key-path (:private-key-path options)}))
           (let [session (ssh/session agent (:ip options) (:sess-opts options))
-                files   (->> (:sources options)
-                             (map #(seq (.listFiles (clojure.java.io/file %))))
-                             (flatten)
-                             (map #(.getAbsolutePath %)))]
+                files   (get-files (:sources options))]
             (ssh/with-connection session
               (apply ssh/scp-to session files (:destination options) (flatten (into [] (:options options))))))))
       (util/info "Uploaded via scp.\n"))))
